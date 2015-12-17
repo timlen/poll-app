@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a ng-href="/app/{{pollData.tliId}}/edit">Redigera</a></li>
+                <li role="presentation" class="active"><a ng-href="/app/{{pollData.tliId}}/results">Resultat</a></li>
+            </ul>
+        </nav>
+        <h3>Omröstning - Resultat</h3>
+    </div>
+
+    <div>
+        <h1>{{pollData.question}}</h1>
+        <p>{{pollData.description}}</p>
+    </div>
+
+    <div>
+        <form class="text-left">
+            <div class="form-group" ng-repeat="choice in pollData.choices">
+                <label for="choice">Alternativ {{$index + 1}}</label>
+                <p class="form-control-static" id="choice">
+                    {{pollData.choices[$index].title}}
+                    ({{percentOfVotes($index)}}%, {{pollData.choices[$index].votes}} röster)
+                </p>
+
+                <div class="progress">
+                    <div class="progress-bar" style="width: {{percentOfVotes($index)}}%;"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

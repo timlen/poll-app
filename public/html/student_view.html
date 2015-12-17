@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="header clearfix">
+        <h3>Omröstning</h3>
+    </div>
+
+    <div class="jumbotron">
+        <h3>{{pollData.question}}</h3>
+        <p class="lead">{{pollData.description}}</p>
+    </div>
+
+    <div>
+        <h3 class="text-center">{{message}}</h3>
+    </div>
+
+    <div class="row">
+        <form class="text-left">
+            <div class="form-group" ng-repeat="choice in pollData.choices">
+                <label for="choice">Alternativ {{$index + 1}}</label>
+
+                <div ng-show="!pollData.hasVoted" class="input-group">
+                    <input type="text" class="form-control" id="choice" ng-model="pollData.choices[$index].title" readonly>
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" ng-click="vote(pollData.choices[$index])">Rösta</button>
+                    </span>
+                </div>
+
+                <div ng-show="pollData.hasVoted">
+                    <input type="text" class="form-control" id="choice" ng-model="pollData.choices[$index].title" readonly>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
